@@ -9,13 +9,15 @@ import { Ofertas } from '../shared/Ofertas.model';
   providers: [OfertasService]
 })
 export class HomeComponent implements OnInit {
-  ofertas: Ofertas[]
+  public ofertas: Ofertas[]
 
   constructor(public ofertasService: OfertasService) { }
 
   ngOnInit() {
-    this.ofertas = this.ofertasService.getOfertas()
-    console.log(this.ofertas)
-  }
+     this.ofertasService.getOfertas()
+      .then((res: Ofertas[]) => {
+        this.ofertas = res
+      })
 
+    }
 }
