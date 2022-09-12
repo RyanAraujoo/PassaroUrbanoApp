@@ -7,9 +7,16 @@ import 'rxjs/add/operator/toPromise'
 export class OfertasService {
   constructor(private http: Http) { }
 
-  getOfertas(): Promise<Array<Ofertas>> {
-      return this.http.get("http://localhost:3000/ofertas?destaque=true").toPromise()
-      .then((res: any) => {return res.json()})
+  async getOfertas(): Promise<Array<Ofertas>> {
+      const res = await this.http.get("http://localhost:3000/ofertas?destaque=true").toPromise()
+    return res.json();
   }
+
+  async getOfertasToCategoria(categoria: string): Promise<Ofertas[]> {
+    const res = await this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`).toPromise()
+    return res.json()
+  }
+
+  
 
 }
