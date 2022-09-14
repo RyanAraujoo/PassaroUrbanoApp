@@ -16,6 +16,12 @@ export class OfertasService {
     const res = await this.http.get(`http://localhost:3000/ofertas?categoria=${categoria}`).toPromise()
     return res.json()
   }
+  
+  async getOfertasToId(id: number): Promise<Ofertas> {
+    const res = await this.http.get(`http://localhost:3000/ofertas?id=${id}`).toPromise()
+    return res.json()[0]
+  }
+
 
   
 
