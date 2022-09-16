@@ -17,7 +17,6 @@ export class OfertasComponent implements OnInit {
 /* Snapshot e Subscribe */
   ngOnInit() {
    this.route.snapshot.params['id']
-   console.log(this.route.snapshot.params['id'])
 
    this.ofertasService.getOfertasToId(this.route.snapshot.params['id'])
    .then((res: Ofertas) => {
