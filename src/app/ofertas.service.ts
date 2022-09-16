@@ -12,21 +12,28 @@ export class OfertasService {
   constructor(private http: Http) { }
 
   async getOfertas(): Promise<Array<Ofertas>> {
-      const res = await this.http.get(`${API_URL}?destaque=true`).toPromise()
+      const res = await this.http.get(`${API_URL}/ofertas?destaque=true`).toPromise()
     return res.json();
   }
 
   async getOfertasToCategoria(categoria: string): Promise<Ofertas[]> {
-    const res = await this.http.get(`${API_URL}?categoria=${categoria}`).toPromise()
+    const res = await this.http.get(`${API_URL}/ofertas?categoria=${categoria}`).toPromise()
     return res.json()
   }
   
   async getOfertasToId(id: number): Promise<Ofertas> {
-    const res = await this.http.get(`${API_URL}?id=${id}`).toPromise()
+    const res = await this.http.get(`${API_URL}/ofertas?id=${id}`).toPromise()
     return res.json()[0]
   }
 
+  async getComoFicaToId(id: number): Promise<Ofertas> {
+    const res = await this.http.get(`${API_URL}/como-usar?id=${id}`).toPromise()
+    return res.json()[0]
+  }
 
-  
+  async getOndeFicaToId(id: number): Promise<Ofertas> {
+    const res = await this.http.get(`${API_URL}/onde-fica?id=${id}`).toPromise()
+    return res.json()[0]
+  }
 
 }
