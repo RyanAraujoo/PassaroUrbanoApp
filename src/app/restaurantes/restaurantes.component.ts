@@ -17,7 +17,7 @@ export class RestaurantesComponent implements OnInit {
     .then((res:Ofertas[]) => { 
       return this.ofertas = res
     })
-    console.log(this.ofertas)
+
   }
 
 }
