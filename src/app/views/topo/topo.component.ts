@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { OfertasService } from 'app/ofertas.service';
+import { OfertasService } from 'app/services/ofertas.service';
 import { Ofertas } from 'app/shared/Ofertas.model';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import '../util/rxjs-exports'
+import '../../util/rxjs-exports'
 @Component({
   selector: 'app-topo',
   templateUrl: './topo.component.html',

@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Ofertas } from 'app/shared/Ofertas.model';
-import { OfertasService } from 'app/ofertas.service';
+import { OfertasService } from 'app/services/ofertas.service';
 import 'rxjs/Rx'
 
 

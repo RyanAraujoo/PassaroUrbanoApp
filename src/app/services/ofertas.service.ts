@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Http, Response} from '@angular/http';
-import { Ofertas } from './shared/Ofertas.model';
-
-import { API_URL } from './app-api';
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/retry'
-import 'rxjs/add/operator/toPromise'
+import { Ofertas } from '../shared/Ofertas.model';
+import { API_URL } from '../util/app-export.api';
+import '../util/rxjs-exports'
 import { Observable } from 'rxjs/Observable';
+
 @Injectable()
 export class OfertasService {
 
@@ -43,6 +41,5 @@ export class OfertasService {
         .retry(3)
          .map((res: any) => {  return res.json() })
   }
-
 }
  
