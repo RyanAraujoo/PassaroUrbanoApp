@@ -11,13 +11,21 @@
             placeholder="digite sua oferta aqui..."
             #termoDeAssinatura
            (keyup)="InputValueCaractere(termoDeAssinatura.value)" 
+           
             />  <!-- Aproach - Variavel de Referencia -->
-
-
             <!-- (keyup)="InputValueCaractere($event)" -->    
+            <ul class="list-group" 
+            style="position: absolute">
+              <li class="list-group-item"
+              *ngFor="let oferta of ofertas" 
+              style="padding-bottom: 5px ;" 
+              >{{oferta.descricao_oferta}} Valor: {{oferta.valor}}</li>
+            </ul>
           </div>
+         
           <div class="col"> <a a href="#"><img src="/assets/carrinho.png" /></a></div>
         </div>
+      
       
   
     </div>
