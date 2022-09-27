@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { appRouterModule } from './app.router.module';
 
@@ -13,6 +13,8 @@ import { OfertasComponent } from './views/ofertas/ofertas.component';
 import { ComoFicaComponent } from './views/ofertas/como-fica/como-fica.component';
 import { OndeFicaComponent } from './views/ofertas/onde-fica/onde-fica.component';
 
+import { descricaoReduzida } from './util/pipes/descricaoReduzida.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,14 +25,15 @@ import { OndeFicaComponent } from './views/ofertas/onde-fica/onde-fica.component
     DiversaoComponent,
     OfertasComponent,
     ComoFicaComponent,
-    OndeFicaComponent
+    OndeFicaComponent,
+    descricaoReduzida
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     HttpModule,
     appRouterModule
   ],
-  providers: [],
+  providers: [{provide: LOCALE_ID, useValue: 'pt-Br'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

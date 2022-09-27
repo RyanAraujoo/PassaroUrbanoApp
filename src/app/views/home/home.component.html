@@ -9,11 +9,15 @@
   <div class="row">
     <div class="col-sm-4" *ngFor="let oferta of ofertas" >
       <div class="card">
+         <!-- uso de pipes na trasnformação de dados -->
         <img class="card-img-top" [src]=oferta.imagens[1].url>
         <div class="card-block">
-          <h4 class="card-title">{{oferta.titulo}}</h4>
-          <p class="card-text">{{oferta.descricao_oferta}}</p>
-          <p class="preco">R$ {{oferta.valor}}</p>
+          <h4 class="card-title">{{oferta.titulo | uppercase}}</h4> 
+         <!-- trasnformação do oferta.titulo em caixa alta -->
+          <p class="card-text">{{oferta.descricao_oferta | lowercase}}</p>
+            <!-- trasnformação do oferta.descricao em caixa baixa -->
+          <p class="preco">{{oferta.valor | currency: 'BRL': true}}</p>
+               <!-- trasnformação do oferta.value em valor moeda -->
           <a href="#" class="btn btn-outline-primary">Ver oferta</a>
         </div>
       </div>

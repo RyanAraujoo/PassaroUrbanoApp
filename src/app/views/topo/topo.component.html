@@ -19,7 +19,11 @@
               <li class="list-group-item"
               *ngFor="let oferta of ofertas" 
               style="padding-bottom: 5px ;" 
-              >{{oferta.descricao_oferta}} Valor: {{oferta.valor}}</li>
+              >
+               <a [routerLink]="['/ofertas', oferta.id]">
+                  {{oferta.descricao_oferta | descricaoReduzida: 15 | uppercase }}
+                </a>
+              </li>
             </ul>
           </div>
          
