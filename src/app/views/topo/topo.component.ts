@@ -11,8 +11,7 @@ import '../../util/rxjs-exports'
   providers: [OfertasService]
 })
 export class TopoComponent implements OnInit {
-  ofertasTo: Observable<Ofertas[]> | undefined;
-  ofertas: Ofertas[]
+  ofertasTo: Observable<Ofertas[]>
   subjectOfertas: Subject<string> = new Subject<string>()
 
   constructor(private ofertasService: OfertasService) {} 
@@ -23,17 +22,12 @@ export class TopoComponent implements OnInit {
     .debounceTime(2000) // 2 segundos para realizar a ação do Subject
     .switchMap((event: string) => { // metodo de fazer a observaçao
       //  if (event.trim() === '') return of<Ofertas[]>([])
-        console.log("requisição http")
         return this.ofertasService.getOfertaToPesquisa(event)
     })
     .catch((error: any) => {  // caso, o switchMap falhe na obsrvação 
         console.log(error)
         return Observable.of<Ofertas[]>([])
     })
-    this.ofertasTo.subscribe((res: Ofertas[]) => { // metodo de ser observado
-      console.log(res)
-      this.ofertas = res
-    }) 
   }
 
 
@@ -41,5 +35,9 @@ export class TopoComponent implements OnInit {
     console.log("pedido feito: " + event)
     // subjectOferta aceite esse parametro e obserse o mais recente
       this.subjectOfertas.next(event)
+  }
+
+  cleanSearch() {
+      this.subjectOfertas.next(null)
   }
 }

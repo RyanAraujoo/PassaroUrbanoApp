@@ -5,7 +5,9 @@
           <div class="col gr"><a href="#" class="navbar-brand">
             <img src="/assets/logo.png" />
           </a></div>
-          <div class="col"><input 
+          <div class="col">
+            
+            <input 
             type="text" 
             class="form-controll"
             placeholder="digite sua oferta aqui..."
@@ -17,11 +19,11 @@
             <ul class="list-group" 
             style="position: absolute">
               <li class="list-group-item"
-              *ngFor="let oferta of ofertas" 
+              *ngFor="let oferta of ofertasTo | async" 
               style="padding-bottom: 5px ;" 
               >
-               <a [routerLink]="['/ofertas', oferta.id]">
-                  {{oferta.descricao_oferta | descricaoReduzida: 15 | uppercase }}
+               <a [routerLink]="['/ofertas', oferta.id]" (click)="cleanSearch()">
+                  {{oferta.descricao_oferta | descricaoReduzida: 15}}
                 </a>
               </li>
             </ul>

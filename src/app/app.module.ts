@@ -1,20 +1,22 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { appRouterModule } from './app.router.module';
+import { HttpModule } from '@angular/http'
+import { RouterModule } from '@angular/router'
+
+import { ROUTES } from './app.routes'
 
 import { AppComponent } from './app.component';
-import { TopoComponent } from './views/topo/topo.component';
-import { HomeComponent } from './views/home/home.component';
-import { RodapeComponent } from './views/rodape/rodape.component';
-import { RestaurantesComponent } from './views/restaurantes/restaurantes.component';
-import { DiversaoComponent } from './views/diversao/diversao.component';
-import { OfertasComponent } from './views/ofertas/ofertas.component';
-import { ComoFicaComponent } from './views/ofertas/como-fica/como-fica.component';
-import { OndeFicaComponent } from './views/ofertas/onde-fica/onde-fica.component';
+import { TopoComponent } from './topo/topo.component';
+import { HomeComponent } from './home/home.component';
+import { RodapeComponent } from './rodape/rodape.component';
+import { RestaurantesComponent } from './restaurantes/restaurantes.component';
+import { DiversaoComponent } from './diversao/diversao.component';
+import { OfertaComponent } from './oferta/oferta.component';
+import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
+import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 
-import { descricaoReduzida } from './util/pipes/descricaoReduzida.pipe';
-
+//pipe
+import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,17 +25,17 @@ import { descricaoReduzida } from './util/pipes/descricaoReduzida.pipe';
     RodapeComponent,
     RestaurantesComponent,
     DiversaoComponent,
-    OfertasComponent,
-    ComoFicaComponent,
+    OfertaComponent,
+    ComoUsarComponent,
     OndeFicaComponent,
-    descricaoReduzida
+    DescricaoReduzida
   ],
   imports: [
-  BrowserModule,
+    BrowserModule,
     HttpModule,
-    appRouterModule
+    RouterModule.forRoot(ROUTES)
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-Br'}],
+  providers: [{ provide: LOCALE_ID, useValue: 'pr-Br' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

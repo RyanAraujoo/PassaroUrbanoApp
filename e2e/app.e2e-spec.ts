@@ -1,10 +1,10 @@
-import { PassaroUrbanoAppPage } from './app.po';
+import { App2Page } from './app.po';
 
-describe('passaro-urbano-app App', () => {
-  let page: PassaroUrbanoAppPage;
+describe('app2 App', () => {
+  let page: App2Page;
 
   beforeEach(() => {
-    page = new PassaroUrbanoAppPage();
+    page = new App2Page();
   });
 
   it('should display welcome message', done => {
