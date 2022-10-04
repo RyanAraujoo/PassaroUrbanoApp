@@ -21,5 +21,5 @@ export const ROUTES: Routes = [
             { path: 'onde-fica', component: OndeFicaComponent },
         ]
     },
-    {path: 'ordem-compra', component: OrdemCompraComponent}
+    {path: 'ordem-compra/:id', component: OrdemCompraComponent}
 ]

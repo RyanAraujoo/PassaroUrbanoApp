@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { OrdemCompraService } from 'app/ordem-compra.service';
+import { Oferta } from 'app/shared/oferta.model';
+import { OfertasService } from './../ofertas.services';
+import { ordemCompra } from './../shared/ordem-compra.model';
+
 
 @Component({
   selector: 'app-ordem-compra',
   templateUrl: './ordem-compra.component.html',
-  styleUrls: ['./ordem-compra.component.css']
+  styleUrls: ['./ordem-compra.component.css'],
+  providers: [OfertasService,OrdemCompraService]
 })
 export class OrdemCompraComponent implements OnInit {
   public endereco: string = ''
@@ -22,10 +29,46 @@ export class OrdemCompraComponent implements OnInit {
   public validaTipoPrimitivoFormaDePagamento: boolean = true
 
   public botaoConfirmarCompra: string = 'disabled'
-  constructor() { }
+  public valorIncrementalOferta: number = 1
+  public ofertas: Oferta
+  public pedido: ordemCompra = new ordemCompra('','','','')
+
+  public idPedidoCompra: number
+
+  constructor(
+    private route: ActivatedRoute,
+    private ofertasService: OfertasService,
+    private ordemCompraService: OrdemCompraService) {}
 
   ngOnInit() {
+   this.route.params.subscribe((parametros: Params) => {
+     this.ofertasService.getOfertaPorId(parametros.id)
+      .then((res: Oferta) => {
+           this.ofertas = res
+      })
+    })
+  }
 
+  confirmarCompra() {
+    this.pedido.endereco = this.endereco
+    this.pedido.complemento = this.complemento
+    this.pedido.numero = this.numero
+    this.pedido.formaDePagamento = this.formaPagamento
+      this.ordemCompraService.efetivarCompra(this.pedido).subscribe((res: ordemCompra) => {
+        this.idPedidoCompra = res.id
+      })
+
+
+  }
+
+
+  incrementando() {
+      this.valorIncrementalOferta++
+  }
+
+  decrementando() {
+    if (this.valorIncrementalOferta == 0) { return;}
+    this.valorIncrementalOferta--
   }
 
   public atualizaEndereco(endereco: string): void {
