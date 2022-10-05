@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { OrdemCompraService } from 'app/ordem-compra.service';
 import { Oferta } from 'app/shared/oferta.model';
@@ -12,7 +12,7 @@ import { ordemCompra } from './../shared/ordem-compra.model';
   styleUrls: ['./ordem-compra.component.css'],
   providers: [OfertasService,OrdemCompraService]
 })
-export class OrdemCompraComponent implements OnInit {
+export class OrdemCompraComponent implements OnInit, OnDestroy {
   public endereco: string = ''
   public numero: string = ''
   public complemento: string = ''
@@ -31,7 +31,9 @@ export class OrdemCompraComponent implements OnInit {
   public botaoConfirmarCompra: string = 'disabled'
   public valorIncrementalOferta: number = 1
   public ofertas: Oferta
+  public ofertasList: Oferta[] = new Array<Oferta>()
   public pedido: ordemCompra = new ordemCompra('','','','')
+  public totalValorOfertas: number
 
   public idPedidoCompra: number
 
@@ -45,8 +47,24 @@ export class OrdemCompraComponent implements OnInit {
      this.ofertasService.getOfertaPorId(parametros.id)
       .then((res: Oferta) => {
            this.ofertas = res
+           this.ofertasList.push(this.ofertas)
+           this.totalValorOfertas = this.atualizarValorTotal()
+           sessionStorage.setItem('carrinhoOfertas',JSON.stringify(this.ofertasList))
       })
     })
+  }
+
+  ngOnDestroy(): void {
+
+  }
+
+  atualizarValorTotal(): number {
+    let x: Oferta
+    let valorTotal: number = 0
+      for (x of this.ofertasList) {
+          valorTotal += x.valor
+      }
+      return valorTotal
   }
 
   confirmarCompra() {
@@ -61,9 +79,9 @@ export class OrdemCompraComponent implements OnInit {
 
   }
 
-
   incrementando() {
       this.valorIncrementalOferta++
+
   }
 
   decrementando() {
