@@ -2,3 +2,16 @@
   margin-bottom: 75px;
   margin-top: 15px;
 }
+
+input.ng-dirty.ng-valid, select.ng-dirty.ng-valid {
+  border: 2px solid greenyellow;
+}
+
+input.ng-touched.ng-invalid, select.ng-touched.ng-invalid {
+  border: 2px solid red;
+}
+
+input.ng-pristine, select.ng-pristine {
+  border: 1px solid antiquewhite;
+}
+

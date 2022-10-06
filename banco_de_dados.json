@@ -185,41 +185,5 @@
       "descricao": "Estrada Maria das Graças, 12, Salvador - BA "
     }
   ],
-  "pedidos": [
-    {
-      "endereco": "aaaaa",
-      "numero": "13213",
-      "complemento": "casa",
-      "formaDePagamento": "debito",
-      "id": 1
-    },
-    {
-      "endereco": "aaaaaaaaaaa",
-      "numero": "123",
-      "complemento": "casa",
-      "formaDePagamento": "debito",
-      "id": 2
-    },
-    {
-      "endereco": "aaaaaaaaaaaaa",
-      "numero": "1",
-      "complemento": "casa",
-      "formaDePagamento": "dinheiro",
-      "id": 3
-    },
-    {
-      "endereco": "aaaaaaaa",
-      "numero": "123213",
-      "complemento": "casa",
-      "formaDePagamento": "dinheiro",
-      "id": 4
-    },
-    {
-      "endereco": "aaaaa",
-      "numero": "12312",
-      "complemento": "sadasdas",
-      "formaDePagamento": "dinheiro",
-      "id": 5
-    }
-  ]
+  "pedidos": []
 }
