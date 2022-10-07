@@ -185,5 +185,13 @@
       "descricao": "Estrada Maria das Graças, 12, Salvador - BA "
     }
   ],
-  "pedidos": []
+  "pedidos": [
+    {
+      "endereco": "Rua Manoel ",
+      "numero": "199",
+      "complemento": "Casa",
+      "formaPagamento": "dinheiro",
+      "id": 1
+    }
+  ]
 }

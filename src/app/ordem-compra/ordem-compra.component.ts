@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { OrdemCompraService } from '../ordem-compra.service'
-import { NgForm } from '@angular/forms';
-import { ordemCompra } from 'app/shared/ordem-compra.model';
+import { ordemCompra } from './../shared/ordem-compra.model';
 
 @Component({
   selector: 'app-ordem-compra',
@@ -10,23 +10,29 @@ import { ordemCompra } from 'app/shared/ordem-compra.model';
   providers: [ OrdemCompraService ]
 })
 export class OrdemCompraComponent implements OnInit {
-  @ViewChild('formulario') public f: NgForm
-  public idCompra: number
+  public forms: FormGroup = new FormGroup({
+    endereco: new FormControl(null, [Validators.required, Validators.minLength(10)]),
+    numero: new FormControl(null, [Validators.required, Validators.minLength(1), Validators.maxLength(5) , Validators.pattern('[0-9]+$')]),
+    complemento: new FormControl(null),
+    formaPagamento: new FormControl(null, [Validators.required])
+  })
 
-  constructor(private ordemCompraService: OrdemCompraService) { }
+  public idNumero: number;
+
+  constructor(private ordemCompraService: OrdemCompraService){ }
 
   ngOnInit() {
 
   }
-  confirmarCompra() {
-    this.ordemCompraService.efetivarCompra(this.f.value).subscribe(
-    (res: ordemCompra) => {
-      console.log("Pedido feito com sucesso!")
-      this.idCompra = res.id },
-    (error: any) => { throw new Error(`Infelizmente! não conseguimos efetivar sua compra! ${error}`)}
+public desativarAtivarBotaoForm () {
+   return this.forms.valid === true ? '' : 'disabled'
+}
+  public confirmarCompra(): void {
+    this.ordemCompraService.efetivarCompra(this.forms.value).subscribe(
+      (res: ordemCompra) => {
+          this.idNumero = res.id
+      }
     )
   }
-  botaoConfirmarEstadoDisabled(): string {
-     return this.f.invalid == true ? 'disabled' : ''
-  }
+
 }

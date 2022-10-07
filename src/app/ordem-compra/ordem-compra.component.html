@@ -1,21 +1,17 @@
-<div class="container">
-  <div class="ordem-compra">
+<div
+class="container">
+  <div class="ordem-compra" *ngIf="idNumero === undefined">
     <form
-    #formulario="ngForm"
-     novalidate
-     (ngSubmit)="confirmarCompra()">
+    [formGroup]="forms"
+    novalidate
+    (ngSubmit)="confirmarCompra()">
 
       <h5>Sua Compra</h5>
       <hr />
 
-      <div
-      class="form-row"
-      style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
-
+      <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0">
         <div class="form-group col-sm-1">
-
           <img src="/assets/ofertas/1/img1.jpg" class="img-fluid">
-
         </div>
         <div class="form-group col-sm-6">
           Super Burger
@@ -70,26 +66,22 @@
       </div>
       <br />
 
-
-
       <h5>Dados de entrega</h5>
       <hr />
-      <div class="form-row" >
+
+      <div class="form-row">
+
         <div class="form-group col-md-6">
           <input
             type="text"
             class="form-control"
             placeholder="Endereço"
             autocomplete="off"
-            minlength="10"
-            required
-            name="endereco"
-            #inputEndereco = 'ngModel'
-            ngModel
-          />
+            formControlName="endereco"
+          >
           <small
-          *ngIf="inputEndereco.invalid"
-          class="form-text text-danger" >Endereço inválido</small>
+          *ngIf="!forms.get('endereco').valid && forms.get('endereco').pristine == false"
+          class="form-text text-danger">Insira um Endereço!</small>
         </div>
 
         <div class="form-group col-md-2">
@@ -98,17 +90,11 @@
             class="form-control"
             placeholder="Número"
             autocomplete="off"
-            pattern="[0-9]+$"
-            minlength="1"
-            maxlength="5"
-            required
-            name="numero"
-            #inputNumero = 'ngModel'
-            ngModel
-          />
+            formControlName="numero"
+          >
           <small
-          *ngIf="inputNumero.invalid"
-          class="form-text text-danger">Não é um número!</small>
+          *ngIf="!forms.get('numero').valid && forms.get('numero').pristine == false"
+          class="form-text text-danger">Numero é do tipo number!</small>
         </div>
 
         <div class="form-group col-md-4">
@@ -117,8 +103,7 @@
             class="form-control"
             placeholder="Complemento"
             autocomplete="off"
-            name="complemento"
-            ngModel
+            formControlName="complemento"
           >
         </div>
 
@@ -133,18 +118,15 @@
         <div class="form-group col-md-3">
           <select
             class="form-control"
-            name="formaDePagamento"
-            required
-            #selectFormaDePagamento = 'ngModel'
-            ngModel
+            formControlName="formaPagamento"
           >
             <option value="">Selecione uma opção</option>
             <option value="dinheiro">Dinheiro</option>
             <option value="debito">Débito</option>
           </select>
           <small
-          *ngIf="selectFormaDePagamento.invalid"
-          class="form-text text-danger">Forma de pagamento inválida</small>
+          *ngIf="!forms.get('formaPagamento').valid && forms.get('formaPagamento').pristine == false"
+          class="form-text text-danger">Selecione uma Opção!</small>
         </div>
       </div>
 
@@ -152,14 +134,16 @@
       <button
         type="submit"
         class="btn btn-primary btn-lg"
-        [disabled]="botaoConfirmarEstadoDisabled()"
+        [disabled]="desativarAtivarBotaoForm()"
       >Cofirmar compra</button>
     </form>
   </div>
-  <span *ngIf="idCompra === undefined; else ordemCompraSucess">
-    <hr/>
-  </span>
+  <div
+  *ngIf="idNumero !== undefined"
+  class="ordem-compra">
+    <app-ordem-compra-sucesso [idPedido]="idNumero"></app-ordem-compra-sucesso>
+  </div>
 </div>
-<ng-template #ordemCompraSucess >
-  <app-ordem-compra-sucesso [id]="idCompra"></app-ordem-compra-sucesso>
-</ng-template>
+
+
+
