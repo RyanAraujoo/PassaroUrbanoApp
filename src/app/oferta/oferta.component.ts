@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router'
 import { OfertasService } from '../ofertas.services'
 import { Oferta } from '../shared/oferta.model'
+import { CarrinhoService } from './../carrinho.service';
 
 
 @Component({
@@ -10,30 +11,29 @@ import { Oferta } from '../shared/oferta.model'
   styleUrls: ['./oferta.component.css'],
   providers: [OfertasService]
 })
-export class OfertaComponent implements OnInit, OnDestroy {
- 
+export class OfertaComponent implements OnInit {
+
   public oferta: Oferta
   constructor(
     private route: ActivatedRoute,
-    private ofertasService: OfertasService
+    private ofertasService: OfertasService,
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit() {
-    // this.route.snapshot.params['id']
-    // this.route.params.subscribe((parametro: any) => {
-    //   console.log(parametro.id)
-    // })
     this.route.params.subscribe((parametros: Params) => {
       this.ofertasService.getOfertaPorId(parametros.id)
         .then((oferta: Oferta) => {
-          this.oferta = oferta
+                this.oferta = oferta
         })
-    })
-
-    
+  })
   }
-  ngOnDestroy(){
-   
+
+ adicionarCompraNoCarrinho(oferta: Oferta) {
+
+              this.carrinhoService.transformarOfertaEmCarrinhoItem(oferta)
+              console.log("Oferta adicionada no carrinho!")
+              console.log(this.carrinhoService._carrinhoComprasGet)
   }
 
 }
