@@ -4,6 +4,7 @@ import { HttpModule } from '@angular/http'
 import { RouterModule } from '@angular/router'
 import { ReactiveFormsModule } from '@angular/forms';
 import { ROUTES } from './app.routes'
+import { CarrinhoService } from './carrinho.service';
 
 import { AppComponent } from './app.component';
 import { TopoComponent } from './topo/topo.component';
@@ -34,12 +35,14 @@ import { OrdemCompraSucessoComponent } from './ordem-compra/ordem-compra-sucesso
     OrdemCompraSucessoComponent
   ],
   imports: [
-    BrowserModule,
+  BrowserModule,
     HttpModule,
     ReactiveFormsModule,
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'pr-Br' }],
+  providers: [
+    CarrinhoService,
+    { provide: LOCALE_ID, useValue: 'pr-Br' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
