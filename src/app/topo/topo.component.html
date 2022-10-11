@@ -7,14 +7,14 @@
             <img src="../../assets/logo.png" />
           </a>
         </div>
-        <!-- #termoDaPesquisa é uma variável sendo passada 
+        <!-- #termoDaPesquisa é uma variável sendo passada
         como parâmetro para função pesquisa em keyup -->
         <div class="col-md-6">
 
-          <input 
-          type="text" 
-          class="form-control" 
-          placeholder="Pesquise por ofertas" 
+          <input
+          type="text"
+          class="form-control"
+          placeholder="Pesquise por ofertas"
           #termoDaPesquisa
           (keyup)="pesquisa(termoDaPesquisa.value)"
           >
@@ -28,7 +28,7 @@
           </ul>
         </div>
         <div class="col-md-2">
-          <a a href="#"><img src="../../assets/carrinho.png" /></a>
+          <a routerLink="/ordem-compra"><img src="../../assets/carrinho.png" /></a>
         </div>
       </div>
 
