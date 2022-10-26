@@ -1,48 +1,28 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, LOCALE_ID } from '@angular/core';
-import { HttpModule } from '@angular/http'
-import { RouterModule } from '@angular/router'
-import { ReactiveFormsModule } from '@angular/forms';
-import { ROUTES } from './app.routes'
-import { CarrinhoService } from './carrinho.service';
-
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TopoComponent } from './topo/topo.component';
-import { HomeComponent } from './home/home.component';
-import { RodapeComponent } from './rodape/rodape.component';
-import { RestaurantesComponent } from './restaurantes/restaurantes.component';
-import { DiversaoComponent } from './diversao/diversao.component';
-import { OfertaComponent } from './oferta/oferta.component';
-import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
-import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
-//pipe
-import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
-import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
-import { OrdemCompraSucessoComponent } from './ordem-compra/ordem-compra-sucesso/ordem-compra-sucesso.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { OffersService } from './shared/services/offers.services';
+import { RouterModule } from '@angular/router';
+import { ViewModule } from './shared/view/view.module';
+import { ReduceDescription } from './util/reduceDescription.pipe';
 @NgModule({
   declarations: [
-    AppComponent,
-    TopoComponent,
-    HomeComponent,
-    RodapeComponent,
-    RestaurantesComponent,
-    DiversaoComponent,
-    OfertaComponent,
-    ComoUsarComponent,
-    OndeFicaComponent,
-    DescricaoReduzida,
-    OrdemCompraComponent,
-    OrdemCompraSucessoComponent
-  ],
+      AppComponent,
+      HeaderComponent,
+      FooterComponent,
+      ReduceDescription
+   ],
   imports: [
-  BrowserModule,
-    HttpModule,
-    ReactiveFormsModule,
-    RouterModule.forRoot(ROUTES)
+  HttpClientModule,
+    BrowserModule,
+    RouterModule,
+    ViewModule
   ],
-  providers: [
-    CarrinhoService,
-    { provide: LOCALE_ID, useValue: 'pr-Br' }],
+  providers: [OffersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

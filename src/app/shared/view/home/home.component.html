@@ -1,0 +1,23 @@
+<div class="container">
+
+  <div class="secao">
+    <h3 class="text-center">Destaques do dia!</h3>
+    <h5 class="text-center">Aproveite as super ofertas que separamos para você:</h5>
+  </div>
+
+  <hr />
+
+  <div class="row" style="margin-bottom: 50px;" *ngIf="_offer !== undefined">
+    <div class="col-sm-4" *ngFor="let offer of _offer">
+      <div class="card">
+        <img class="card-img-top" [src]="offer.image[0].url">
+        <div class="card-block">
+          <h4 class="card-title">{{offer.title}}</h4>
+          <p class="card-text">{{offer.offer_description}}</p>
+          <p class="preco">{{offer.value | currency: 'BRL': 'R$ '}}</p>
+          <a [routerLink]="['/oferta', offer.id]" class="btn btn-outline-primary">Ver oferta</a>
+        </div>
+      </div>
+    </div>
+  <hr />
+</div>
