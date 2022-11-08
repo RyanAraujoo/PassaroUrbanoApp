@@ -1,8 +1,8 @@
-<h1  align="center">PássaroUrbano<img width=40 align="center" src="./img/icon-shopping-cart-orange.png"></h1>
+<h1  align="center">PássaroUrbano<img width=40 align="center" src="./src/assets/carrinho.png"></h1>
 <p align="center"><b><i>🛒 &nbsp;Versão 2 da Aplicação</i></b></p>
 
 <p align="center">
-<img width="100%"  align="left" src="./src/assets/readme/lnikedin-video-2.gif">
+<img width="100%"  align="left" src="">
 </p>
 
 # 📌 Tópicos
@@ -11,7 +11,7 @@
 
 - [Descricao](#-Descricao)
 - [Tecnologias](#-Tecnologias)
-- [Itens](#-Itens)
+- [Tarefas](#-Features)
 - [Aplicacao](#-Como-Posso-Rodar-a-Aplicacao?)
 <!--te-->
 
@@ -29,7 +29,7 @@
 - [AngularV14](https://angular.io/)
 - [Visual Studio Code](https://code.visualstudio.com/)
 
-# 🎯 Itens
+# 🎯 Features
 
 <pre>
 ✔️ Listagem das Ofertas do Json Server
