@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { OffersService } from '../shared/services/offers.services';
 import { Offer } from '../shared/model/offer.model';
-import { debounceTime, distinctUntilChanged, Observable, of, Subject, switchMap} from 'rxjs';
+import { distinctUntilChanged, Observable, of, Subject, switchMap } from 'rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  private offer!: Observable<Offer[]>
+  private offer?: Observable<Offer[]>;
   private loop: boolean = true;
+  private stringSeach: Subject<string> = new Subject<string>();
+  private offersSeach: Offer[] = [];
+
+  constructor(private offersService: OffersService) {}
 
   get _offer() {
     return this.offer;
   }
-
-  private stringSeach: Subject<string> = new Subject<string>();
-
-  private offersSeach!: Offer[];
 
   get _offerSeach() {
     return this.offersSeach;
@@ -26,18 +26,15 @@ export class HeaderComponent implements OnInit {
     this.offersSeach = offer;
   }
 
-  constructor(private offersService: OffersService) {}
-
   ngOnInit() {
-    this.offer = this.stringSeach
-        .pipe(distinctUntilChanged())
-        .pipe(switchMap((str: string) => {
-          if (str.trim() === '') {
-            //retornar um observable de array de ofertas vazio caso preencha um campo vazio na pesquisa
-            return of<Offer[]>([])
+    this.offer = this.stringSeach.pipe(distinctUntilChanged()).pipe(
+      switchMap((str: string) => {
+        if (str.trim() === '') {
+          return of<Offer[]>([]);
         }
-        return this.offersService.searchOffer(str)
-      }))
+        return this.offersService.searchOffer(str);
+      })
+    );
   }
 
   seach(arg: string) {

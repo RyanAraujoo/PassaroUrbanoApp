@@ -1,17 +1,17 @@
-import { Injectable } from '@angular/core'
-import { ShoppingCartModel } from '../model/shoppingCart.model'
-import { Offer } from '../model/offer.model'
+import { Injectable } from '@angular/core';
+import { ShoppingCartModel } from '../model/shoppingCart.model';
+import { Offer } from '../model/offer.model';
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingCartService {
-  private shoppingCart: ShoppingCartModel[] = []
+  private shoppingCart: ShoppingCartModel[] = [];
 
   get _shoppingCartGet(): ShoppingCartModel[] {
-    return this.shoppingCart
+    return this.shoppingCart;
   }
   set _shoppingCartSet(cartItem: ShoppingCartModel) {
-    this.shoppingCart.push(cartItem)
+    this.shoppingCart.push(cartItem);
   }
   convertOfferToCartItem(offer: Offer) {
     let cartItem = new ShoppingCartModel(
@@ -20,34 +20,34 @@ export class ShoppingCartService {
       offer.offer_description,
       offer.value,
       offer.image[0].url
-    )
+    );
     let foundItemInCart = this._shoppingCartGet.find(
       (value: ShoppingCartModel) => {
         return cartItem.id === value.id;
       }
     );
     if (foundItemInCart) {
-      foundItemInCart.amount++
+      foundItemInCart.amount++;
     } else {
-      this._shoppingCartSet = cartItem
+      this._shoppingCartSet = cartItem;
     }
   }
   calculateTotalShoppingCart() {
     return this._shoppingCartGet.reduce((result, amount) => {
-      return (result += amount.value * amount.amount)
+      return (result += amount.value * amount.amount);
     }, 0);
   }
   adjustAmountCartItem(cartItem: ShoppingCartModel, operation: string) {
     if (operation === '+') {
-      cartItem.amount++
+      cartItem.amount++;
     } else {
       if (cartItem.amount == 1) {
         return;
       }
-      cartItem.amount--
+      cartItem.amount--;
     }
   }
   removeOfferShoppingCartAfterEffective() {
-    this.shoppingCart = []
+    this.shoppingCart = [];
   }
 }

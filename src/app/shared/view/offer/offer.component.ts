@@ -39,7 +39,7 @@ export class OfferComponent implements OnInit {
   }
 
   addPurchaseToCart(offer: Offer) {
-    this.shoppingCartService.convertOfferToCartItem(offer);
-    this.router.navigate(["/carrinho"]);
+    this.shoppingCartService.convertOfferToCartItem(offer)
+    this.router.navigate(["/carrinho"])
   }
 }

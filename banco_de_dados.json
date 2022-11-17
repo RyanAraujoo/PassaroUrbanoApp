@@ -202,6 +202,23 @@
         }
       ],
       "id": 1
+    },
+    {
+      "address": "Rua Hostilho Oliveira",
+      "number": "199",
+      "complement": "Casa",
+      "formOfPayment": "dinheiro",
+      "cart": [
+        {
+          "id": 5,
+          "title": "Kart",
+          "description": "Bateria de Kart de 30 minutos.",
+          "value": 54.9,
+          "image": "/assets/ofertas/5/img1.jpg",
+          "amount": 1
+        }
+      ],
+      "id": 2
     }
   ]
 }

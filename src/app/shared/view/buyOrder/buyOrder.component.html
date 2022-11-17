@@ -1,56 +1,39 @@
-<div
-class="container">
+<div class="container">
   <div class="ordem-compra" *ngIf="idNumber == undefined">
-    <form
-    [formGroup]="_forms"
-    novalidate
-    (ngSubmit)="confirmBuy()">
+    <form [formGroup]="_forms" novalidate (ngSubmit)="confirmBuy()">
 
       <h5>Sua Compra</h5>
       <hr />
-    <div
-    *ngIf="cart.length >= 1; else emptyCart">
-          <div
-          class="form-row"
-          style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0"
-          *ngFor="let cartItem of cart"
-          >
-            <div class="form-group col-sm-1">
-              <img src={{cartItem.image}} class="img-fluid">
-            </div>
-            <div class="form-group col-sm-6">
-              {{cartItem.title}}
-              <br />
-              {{cartItem.description}}
-            </div>
-            <div>
-              <div class="row">
-                <div class="col">
-                  <button
-                  type="button"
-                  class="btn btn-link"
-                  (click)="decreasing(cartItem)"
-                  >-</button>
-                 {{cartItem.amount}}
-                  <button
-                  type="button"
-                  class="btn btn-link"
-                  (click)="incrementing(cartItem)"
-                  >+</button>
-                </div>
+      <div *ngIf="cart.length >= 1; else emptyCart">
+        <div class="form-row" style="background: #FAFAFA; padding: 20px; border-bottom: solid 1px #F0F0F0"
+          *ngFor="let cartItem of cart">
+          <div class="form-group col-sm-1">
+            <img src={{cartItem.image}} class="img-fluid">
+          </div>
+          <div class="form-group col-sm-6">
+            {{cartItem.title}}
+            <br />
+            {{cartItem.description}}
+          </div>
+          <div>
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-link" (click)="decreasing(cartItem)">-</button>
+                {{cartItem.amount}}
+                <button type="button" class="btn btn-link" (click)="incrementing(cartItem)">+</button>
+              </div>
             </div>
             <div class="form-group col-sm-3 d-flex justify-content-end">
               {{cartItem.value | currency: 'BRL': 'R$ '}}
             </div>
           </div>
         </div>
-    </div>
+      </div>
       <ng-template #emptyCart>
         <small class="form-text text-danger">O carrinho está vazio! Confira as Ofertas</small>
       </ng-template>
       <div class="form-row">
-        <div class="form-group col d-flex justify-content-end"
-        *ngIf="cart.length >= 1">
+        <div class="form-group col d-flex justify-content-end" *ngIf="cart.length >= 1">
           <h4>{{ shoppingCartService.calculateTotalShoppingCart() | currency: 'BRL':'R$ ' }}</h4>
         </div>
       </div>
@@ -62,39 +45,20 @@ class="container">
       <div class="form-row">
 
         <div class="form-group col-md-6">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Endereço"
-            autocomplete="off"
-            formControlName="adress"
-          >
-          <small
-          *ngIf="_forms.controls['adress'].invalid && _forms.controls['adress'].pristine == false"
-          class="form-text text-danger">Insira um Endereço!</small>
+          <input type="text" class="form-control" placeholder="Endereço" autocomplete="off" formControlName="adress">
+          <small *ngIf="_forms.controls['adress'].invalid && _forms.controls['adress'].pristine == false"
+            class="form-text text-danger">Insira um Endereço!</small>
         </div>
 
         <div class="form-group col-md-2">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Número"
-            autocomplete="off"
-            formControlName="numberHouse"
-          >
-          <small
-          *ngIf="_forms.controls['numberHouse'].invalid && _forms.controls['numberHouse'].pristine == false"
-          class="form-text text-danger">Numero é do tipo number!</small>
+          <input type="text" class="form-control" placeholder="Número" autocomplete="off" formControlName="numberHouse">
+          <small *ngIf="_forms.controls['numberHouse'].invalid && _forms.controls['numberHouse'].pristine == false"
+            class="form-text text-danger">Numero é do tipo number!</small>
         </div>
 
         <div class="form-group col-md-4">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Complemento ( Opcional )"
-            autocomplete="off"
-            formControlName="complement"
-          >
+          <input type="text" class="form-control" placeholder="Complemento ( Opcional )" autocomplete="off"
+            formControlName="complement">
         </div>
 
       </div>
@@ -106,34 +70,22 @@ class="container">
       <div class="form-row">
 
         <div class="form-group col-md-3">
-          <select
-            class="form-control"
-            formControlName="formPayment"
-          >
+          <select class="form-control" formControlName="formPayment">
             <option value="">Selecione uma opção</option>
             <option value="dinheiro">Dinheiro</option>
             <option value="debito">Débito</option>
           </select>
-          <small
-          *ngIf="_forms.controls['formPayment'].pristine"
-          class="form-text text-danger">Selecione uma Opção!</small>
+          <small *ngIf="_forms.controls['formPayment'].pristine" class="form-text text-danger">Selecione uma
+            Opção!</small>
         </div>
       </div>
 
       <hr />
-      <button
-        type="submit"
-        class="btn btn-primary btn-lg"
-        [disabled]="desactiveActivateButtonSetCartForm()"
-      >Cofirmar compra</button>
+      <button type="submit" class="btn btn-primary btn-lg" [disabled]="desactiveActivateButtonSetCartForm()">Cofirmar
+        compra</button>
     </form>
   </div>
-  <div
-  *ngIf="idNumber !== undefined"
-  class="ordem-compra">
+  <div *ngIf="idNumber !== undefined" class="ordem-compra">
     <app-orderbuysucess [idNumber]='idNumber'></app-orderbuysucess>
   </div>
 </div>
-
-
-

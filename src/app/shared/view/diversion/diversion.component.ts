@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { take } from 'rxjs/operators';
+import { take } from 'rxjs/operators'
 import { OffersService } from '../../services/offers.services'
 import { Offer } from './../../model/offer.model'
 @Component({
@@ -19,7 +19,8 @@ export class DiversionComponent implements OnInit {
   }
   constructor(private offerService: OffersService) {}
   ngOnInit() {
-    this.offerService.getOffersByCategory("diversao")
+    this.offerService
+      .getOffersByCategory('diversao')
       .pipe(take(1))
       .subscribe((sub: Offer[]) => {
         this.offer = sub

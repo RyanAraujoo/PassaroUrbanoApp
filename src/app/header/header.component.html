@@ -14,7 +14,7 @@
 
           <ul class="list-group" style="position: absolute; z-index: 999" *ngIf="_offer !== undefined">
             <li class="list-group-item" *ngFor="let offer of _offer | async">
-              <a [routerLink]= "['/oferta', offer.id]" (click)="cleanSeacher()">
+              <a [routerLink]="['/oferta', offer.id]" (click)="cleanSeacher()">
                 {{offer.title | reduceDescription: 8 | uppercase }}
               </a>
             </li>

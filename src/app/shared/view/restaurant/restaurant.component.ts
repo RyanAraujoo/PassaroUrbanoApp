@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
-import { Offer } from '../../model/offer.model';
-import { OffersService } from '../../services/offers.services';
+import { Component, OnInit } from '@angular/core'
+import { first } from 'rxjs/operators'
+import { Offer } from '../../model/offer.model'
+import { OffersService } from '../../services/offers.services'
 
 @Component({
   selector: 'app-restaurant',
@@ -11,6 +11,8 @@ import { OffersService } from '../../services/offers.services';
 export class RestaurantComponent implements OnInit {
   private offer!: Offer[]
 
+  constructor(private offerService: OffersService) {}
+
   get _offer() {
     return this.offer
   }
@@ -18,9 +20,10 @@ export class RestaurantComponent implements OnInit {
   set _offer(offer: Offer[]) {
     this.offer = offer
   }
-  constructor(private offerService: OffersService) {}
+
   ngOnInit() {
-    this.offerService.getOffersByCategory("restaurante")
+    this.offerService
+      .getOffersByCategory('restaurante')
       .pipe(first())
       .subscribe((sub: Offer[]) => {
         this.offer = sub

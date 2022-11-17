@@ -6,7 +6,11 @@ import { OfferModelChild } from './../../../model/offerChild.model';
 
 @Component({
   selector: 'app-howUser',
-  templateUrl: './howUser.component.html',
+  template:`
+    <p>
+      {{ _howUser }}
+    </p>
+  `,
 })
 export class HowUseComponent implements OnInit {
   private howUser!: string;

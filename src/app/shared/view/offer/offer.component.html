@@ -1,7 +1,5 @@
 <div class="container">
-  <div class="oferta"
-  *ngIf="_offer "
-  >
+  <div class="oferta" *ngIf="_offer ">
     <div class="row">
       <div class="col">
         <h4>{{_offer.offer_description}}</h4>
@@ -35,10 +33,8 @@
 
         <div class="row">
           <div class="col text-center">
-            <button type="button"
-            class="btn btn-warning btn-lg"
-             (click)="addPurchaseToCart(_offer)"
-             >Adicionar ao carrinho</button>
+            <button type="button" class="btn btn-warning btn-lg" (click)="addPurchaseToCart(_offer)">Adicionar ao
+              carrinho</button>
           </div>
         </div>
 
@@ -53,7 +49,8 @@
     <div class="col">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" routerLink="comoUsar" data-toggle="tab" href="#comoUsar" role="tab" aria-expanded="true">Como usar</a>
+          <a class="nav-link active" routerLink="comoUsar" data-toggle="tab" href="#comoUsar" role="tab"
+            aria-expanded="true">Como usar</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" routerLink="ondeFica" data-toggle="tab" href="#ondeFica" role="tab">Onde fica?</a>
@@ -65,8 +62,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-

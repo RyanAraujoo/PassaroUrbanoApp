@@ -8,10 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ViewModule } from './shared/view/view.module';
 import { HeaderModule } from './header/header.module';
 @NgModule({
-  declarations: [
-      AppComponent,
-      FooterComponent,
-   ],
+  declarations: [AppComponent, FooterComponent],
   imports: [
     HeaderModule,
     HttpClientModule,
@@ -20,6 +17,6 @@ import { HeaderModule } from './header/header.module';
     ViewModule,
   ],
   providers: [OffersService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

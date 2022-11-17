@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { BuyOrderModel } from '../../model/buyOrder.model';
-import { ShoppingCartModel } from '../../model/shoppingCart.model';
-import { ShoppingCartService } from '../../services/shoppingcart.service';
-import { BuyOrderService } from './../../services/buyOrder.service';
+import { Component, OnInit } from '@angular/core'
+import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { first } from 'rxjs/operators'
+import { BuyOrderModel } from '../../model/buyOrder.model'
+import { ShoppingCartModel } from '../../model/shoppingCart.model'
+import { ShoppingCartService } from '../../services/shoppingcart.service'
+import { BuyOrderService } from './../../services/buyOrder.service'
 
 @Component({
   selector: 'app-buyOrder',
@@ -27,13 +27,13 @@ export class BuyOrderComponent implements OnInit {
     formPayment: new FormControl(null, [Validators.required]),
   });
 
-  get _forms () {
-    return this.forms;
+  get _forms() {
+    return this.forms
   }
 
   public idNumber!: number
   public cart: ShoppingCartModel[] = []
-  public totalityCarItem: number = 0;
+  public totalityCarItem: number = 0
 
   constructor(
     public shoppingCartService: ShoppingCartService,
@@ -41,14 +41,14 @@ export class BuyOrderComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.cart = this.shoppingCartService._shoppingCartGet;
+    this.cart = this.shoppingCartService._shoppingCartGet
   }
 
   public desactiveActivateButtonSetCartForm(): string {
     if (this.forms.valid && this.cart.length) {
-      return '';
+      return ''
     } else {
-      return 'disabled';
+      return 'disabled'
     }
   }
 
@@ -65,19 +65,19 @@ export class BuyOrderComponent implements OnInit {
       .effectivePurchase(pedido)
       .pipe(first())
       .subscribe((res: BuyOrderModel) => {
-        this.idNumber = res.id;
-      });
+        this.idNumber = res.id
+      })
   }
 
   incrementing(cartItem: ShoppingCartModel) {
-    this.shoppingCartService.adjustAmountCartItem(cartItem, '+');
+    this.shoppingCartService.adjustAmountCartItem(cartItem, '+')
   }
 
   decreasing(cartItem: ShoppingCartModel) {
-    this.shoppingCartService.adjustAmountCartItem(cartItem, '-');
+    this.shoppingCartService.adjustAmountCartItem(cartItem, '-')
   }
 
   cartClean() {
-    this.cart = [];
+    this.cart = []
   }
 }

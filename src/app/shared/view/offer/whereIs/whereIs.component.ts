@@ -6,15 +6,19 @@ import { OfferModelChild } from 'src/app/shared/model/offerChild.model';
 
 @Component({
   selector: 'app-whereIs',
-  templateUrl: './whereIs.component.html',
+  template: `
+    <p>
+      {{ _whereIs }}
+    </p>
+  `,
 })
 export class WhereIsComponent implements OnInit {
   private whereIs!: string;
   get _whereIs() {
-    return this.whereIs;
+    return this.whereIs
   }
   set _whereIs(value: string) {
-    this.whereIs = value;
+    this.whereIs = value
   }
   constructor(
     private route: ActivatedRoute,
